@@ -1,0 +1,138 @@
+.taskBoard{
+  background-color: rgb(40, 35, 201);
+  flex: 1 1 300px;
+  max-width: 400px;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  height: 100%;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  overflow: auto;
+  border-bottom: 2px solid rgb(15, 189, 128);
+}
+
+.taskBoard .heading{
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.6rem;
+  color: white;
+}
+
+.taskBoard .comments {
+  max-height:20px ;
+}
+
+.taskBoard .comments .heading {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.taskBoard .comments i {
+  margin-right: 10px;
+}
+
+.taskBoard .messageContainer{
+  width: 100%;
+  background-color: antiquewhite;
+  margin-bottom: 15px;
+}
+
+.taskBoard .content {
+  overflow: auto;
+  height: 70vh;
+}
+
+.taskBoard .content::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+.taskBoard .content::-webkit-scrollbar-thumb {
+  background:transparent;
+}
+
+.taskBoard .comments::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+.taskBoard .comments::-webkit-scrollbar-thumb {
+  background:transparent;
+}
+
+.taskBoard::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+.taskBoard::-webkit-scrollbar-thumb {
+  background:transparent;
+}
+
+.taskBoard .heading .count {
+  background-color: rgb(14, 19, 118);
+  /*border: 2px solid black;
+  *//*height: 20px;
+  */padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.taskBoard .addMore{
+  margin-bottom: 15px;
+  box-shadow: 0px 2px 5px rgb(0, 0, 0);
+  color: white;
+  width: 100%;
+  margin-top: 15px;
+  background-color: rgb(12, 72, 145);
+  border: none;
+  padding: 2px;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  cursor: pointer;
+  font-size: 3rem;
+}
+
+@media screen and (max-width: 1111px) {
+  .taskBoard{
+    max-width: unset;
+    width: 100%;
+    margin: 0;
+    border-radius: unset;
+    -webkit-border-radius: unset;
+    -moz-border-radius: unset;
+    -ms-border-radius: unset;
+    -o-border-radius: unset;
+  }
+
+  .taskBoard .content{
+    display: flex;
+    overflow: auto;
+    height: unset;
+  }
+
+  .taskBoard .addMore{
+    width: 4rem;
+    
+  }
+  .taskBoard .content::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+  }
+  
+}

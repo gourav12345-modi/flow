@@ -1,0 +1,36 @@
+.dashboard{
+  height: 100vh;
+  /* background-color: rgb(19, 19, 135); */
+  /* overflow: hidden; */
+  display: flex;
+  flex-direction: column;
+}
+
+/* dashboardAndSidebarContainer */
+.dashboardAndSidebarContainer{
+  display: flex;
+  flex: 1;
+}
+
+.taskBoardContainer{
+  /* background-color: rgb(26, 9, 155); */
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  /* flex-wrap: wrap; */
+}
+
+@media screen and (max-width: 1111px) {
+  .dashboardAndSidebarContainer{
+    display: block;
+  }
+  .taskBoardContainer{
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+}

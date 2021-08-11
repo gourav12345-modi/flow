@@ -1,0 +1,118 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: ffffff;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.fontAwesome {
+  font-family: 'Helvetica', 'Font Awesome 5 Free';
+}
+
+.navigation {
+  display: flex;
+  padding: 0.5rem 3rem;
+  background-color: var(--primary);
+  justify-content: space-between;
+  align-items: flex-end;
+  color: white;
+  min-height: 50px;
+}
+
+.navigation .userInfo .login,.navigation .userInfo .register {
+  padding: 5px;
+  background-color: white;
+  font-size: 1.3rem;
+  margin-left: 5px;
+  color: black;
+
+}
+
+.navigation .companyName h3{
+  font-size: 3rem;
+  display: block;
+  color: white;
+}
+
+.navigation .searchBar .fa-search{
+  transform: translateX(100%);
+  font-size: 2rem;
+  padding-left: 0.5rem;
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
+}
+
+
+
+.navigation .searchBar input{
+  padding-left: 3rem;
+  font-size: 2rem;
+  border: none;
+  border-bottom: 2px solid  var(--secondary);
+  color:  var(--secondary);
+  outline: none;
+  background-color: transparent;
+}
+
+.navigation .searchBar input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--secondary);
+  opacity: 0.8; /* Firefox */
+}
+
+.navigation .searchBar input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: var(--secondary);
+  opacity: 0.8;
+}
+
+.navigation .searchBar input::-ms-input-placeholder { /* Microsoft Edge */
+  color: var(--secondary);
+  opacity: 0.8;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userInfo .notification {
+  margin-right: 2rem;
+}
+
+.userInfo .notification p{
+  font-size: 2.5rem;
+}
+
+.userInfo .nameAndMore{
+  margin-right: 1rem;
+  font-size: 1.8rem;
+  font-weight: bolder;
+}
+
+.userInfo .nameAndMore p{
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.userImage img{
+  width: 3.5rem;
+  border: 2px solid var(--secondary);
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+
+
+
+

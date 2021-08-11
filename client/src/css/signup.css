@@ -1,0 +1,92 @@
+.signupFormContainer{
+   margin-top: 5rem;
+    width: 60%;
+    max-width: 400px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #17266e;
+    margin: 5rem auto ;
+    color: white;
+    padding: 20px;
+}
+
+.error {
+  color: rgb(255, 0, 0);
+}
+.signupFormContainer form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.signupFormContainer form div {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+.signupFormContainer form div i{
+  
+  font-size: 17px;
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
+  padding-bottom: 5px;
+}
+
+.notVisible{
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.signupFormContainer form input {
+
+  padding-left: 25px;
+  outline: none;
+  padding-bottom: 2px;
+  width: 100%;
+  font-size: 17px;
+  background-color: transparent;
+  color: white;
+  border: 0;
+  border-bottom: 2px solid white;
+
+}
+
+.signupFormContainer form input:-webkit-autofill,
+.signupFormContainer form input:-webkit-autofill:hover, 
+.signupFormContainer form input:-webkit-autofill:focus, 
+.signupFormContainer form input:-webkit-autofill:active
+{
+ -webkit-box-shadow: 0 0 0 30px #17266e inset !important;
+}
+
+.signupFormContainer form input:-webkit-autofill
+{
+ -webkit-text-fill-color: white !important;
+}
+
+.signupFormContainer form button {
+  width: 60%;
+  display: block;
+  padding: 10px 15px;
+  margin: 15px auto ;
+  margin-bottom: 5px;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 5px ;
+  -webkit-border-radius: 5px ;
+  -moz-border-radius: 5px ;
+  -ms-border-radius: 5px ;
+  -o-border-radius: 5px ;
+}
+
+.signupFormContainer a {
+  color: white;
+}

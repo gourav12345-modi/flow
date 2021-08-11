@@ -1,0 +1,70 @@
+.taskCard {
+  background-color:rgb(7, 86, 125);
+
+  color: white;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  box-shadow: 0px 3px 5px black;
+  margin-bottom: 15px;
+}
+
+.taskCard .mainContent{
+  padding: 10px;
+  word-wrap: break-word;
+}
+
+.taskCard .heading{
+  display: flex !important;
+  align-items: center;
+}
+
+.taskCard .heading .edit{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+
+.taskCard .bottom{
+  /* background-color: rgb(31, 133, 15); */
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+  align-items: center;
+  font-size: 1.3rem;
+}
+
+.taskCard .bottom .delete{
+  cursor: pointer;
+  background-color: rgb(0, 21, 255);
+  height: 100%;
+  padding: 5px 15px;
+}
+
+.taskCard .bottom .commentsCount{
+  cursor: pointer;
+  padding: 5px 15px;
+  background-color: rgb(0, 34, 255);
+}
+
+.taskCard .heading .name{
+  margin-bottom: 5px;
+}
+
+.taskCard .description p{
+  font-size: 1.4rem;
+}
+
+@media screen and (max-width: 1111px) {
+  .taskCard{
+    min-width: 300px;
+    margin: 5px;
+  }
+}
