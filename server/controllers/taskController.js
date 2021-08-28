@@ -2,10 +2,11 @@ const Task = require('../models/task');
 
 // Create new task
 const createNewTask = async (req, res, next) => {
-  const { title, description } = req.body;
+  const { title, description, status } = req.body;
   const task = new Task({
     creator: req.user.id,
     title,
+    status,
     description,
   });
   try {
@@ -17,9 +18,9 @@ const createNewTask = async (req, res, next) => {
 };
 
 // Get all task
-const getAllTask = async (_req, res, next) => {
+const getAllTask = async (req, res, next) => {
   try {
-    const allTasks = await Task.find();
+    const allTasks = await Task.find({ creator: req.user.id }).sort({ createdAt: -1 }).populate('comments');
     res.send(allTasks);
   } catch (error) {
     next(error);
@@ -38,11 +39,16 @@ const getTaskById = async (req, res, next) => {
 };
 
 // Update Post
-const updateTask = (req, res, next) => {
+const updateTask = async (req, res, next) => {
   const { id } = req.params;
-  const { title, description } = req.body;
+  const {
+    title, description, creator, status,
+  } = req.body;
   try {
-    const updatedTask = Task.findOneAndReplace({ _id: id, creator: req.user.id }, {
+    const updatedTask = await Task.findOneAndReplace({ _id: id, creator: req.user.id }, {
+      _id: id,
+      creator,
+      status,
       title,
       description,
     }, { new: true });
@@ -53,10 +59,10 @@ const updateTask = (req, res, next) => {
 };
 
 // delete
-const deleteTask = (req, res, next) => {
+const deleteTask = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const deletedTask = Task.deleteOne({ _id: id, creator: req.user.id });
+    const deletedTask = await Task.deleteOne({ _id: id, creator: req.user.id });
     res.send(deletedTask);
   } catch (error) {
     next(error);

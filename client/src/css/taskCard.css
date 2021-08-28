@@ -2,11 +2,6 @@
   background-color:rgb(7, 86, 125);
 
   color: white;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
   box-shadow: 0px 3px 5px black;
   margin-bottom: 15px;
 }
@@ -30,12 +25,9 @@
 
 
 .taskCard .bottom{
-  /* background-color: rgb(31, 133, 15); */
   margin-top: 15px;
   display: flex;
   justify-content: space-between;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
   overflow: hidden;
   align-items: center;
   font-size: 1.3rem;
@@ -54,8 +46,13 @@
   background-color: rgb(0, 34, 255);
 }
 
-.taskCard .heading .name{
-  margin-bottom: 5px;
+.taskCard .heading .name {
+  font-size: 2rem;
+}
+
+.taskCard  .time{
+  margin-bottom: 10px;
+  font-size: 1.3rem;
 }
 
 .taskCard .description p{

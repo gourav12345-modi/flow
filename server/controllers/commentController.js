@@ -3,28 +3,31 @@ const Task = require('../models/task');
 
 // Create new comment
 const createComment = async (req, res, next) => {
-  const { description, taskId } = req.body;
+  const { commentData, taskId } = req.body;
   const comment = new Comment({
     creator: req.user.id,
-    description,
+    description: commentData,
   });
   try {
     const savedTask = await comment.save();
     const updatedTask = await Task
       .findOneAndUpdate({ _id: taskId }, { $push: { comments: savedTask._id } });
-    res.send(updatedTask);
+    res.send(savedTask);
   } catch (error) {
     next(error);
   }
 };
 
 // Update Post
-const updateComment = (req, res, next) => {
-  const { description, commentId } = req.body;
+const updateComment = async (req, res, next) => {
+  const { id } = req.params;
+  const { description } = req.body;
+  console.log(id, description, req.user.id);
   try {
-    const updatedComment = Comment.findOneAndReplace({ _id: commentId, creator: req.user.id }, {
-      description,
-    }, { new: true });
+    const updatedComment = await Comment
+      .updateOne({ _id: id, creator: req.user.id }, {
+        description,
+      });
     res.send(updatedComment);
   } catch (error) {
     next(error);
@@ -32,11 +35,11 @@ const updateComment = (req, res, next) => {
 };
 
 // delete
-const deleteComment = (req, res, next) => {
+const deleteComment = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const deletedComment = Comment.deleteOne({ _id: id, creator: req.user.id });
-    res.send(deletedComment);
+    const deletedComment = await Comment.deleteOne({ _id: id, creator: req.user.id });
+    res.json({ deleteId: id });
   } catch (error) {
     next(error);
   }

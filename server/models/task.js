@@ -9,6 +9,7 @@ const taskSchema = new Schema({
   },
   title: { type: String, required: true },
   description: { type: String, required: true },
+  status: Number,
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
 }, {
   timestamps: true,

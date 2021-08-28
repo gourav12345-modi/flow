@@ -73,13 +73,12 @@ const login = (req, res, next) => {
           user.refreshToken.push(refreshToken);
           user.save().then((_result) => {
             // httpOnly cookie for refreshToken with path '/refresh_token'
-            console.log(refreshToken);
             res.cookie('refreshToken', refreshToken, {
               maxAge: 60 * 24 * 60 * 60 * 1000, // setting cookie for 60 days
               httpOnly: true,
               // samesite: 'lax',
               // secure: true,
-              path: '/api/user/refreshToken',
+              path: '/api/user',
             });
             // send res
             return res.status(200).json({
@@ -103,7 +102,6 @@ const login = (req, res, next) => {
 // user logout
 const logout = (req, res, next) => {
   // get refreshToken
-  console.log(req.cookies);
   const { refreshToken } = req.cookies;
   // clear cookie
   res.clearCookie('refreshToken', { path: 'api/user/refresh_token' });
@@ -116,12 +114,14 @@ const logout = (req, res, next) => {
 
 // refreshToken route
 const getToken = (req, res, next) => {
-  console.log(req);
   const token = req.cookies.refreshToken;
   // if token is not in request
   if (!token) return res.status(401).json({ message: 'Token not found', accessToken: '' });
   jwt.verify(token, process.env.JWT_REFRESH_SECRET, (err, user) => {
-    if (err) return res.status(403).json({ message: 'Invalid token', accessToken: '' });
+    if (err) {
+      console.log(err.message);
+      return res.status(403).json({ message: 'Invalid token', accessToken: '' });
+    }
     User.findOne({ _id: user.id }).then((result) => {
       if (result && result.refreshToken.includes(token)) {
         const accessToken = jwt.sign({
@@ -136,13 +136,16 @@ const getToken = (req, res, next) => {
           name: result.name,
           email: result.email,
         }, process.env.JWT_REFRESH_SECRET);
-
+        const index = result.refreshToken.indexOf(token);
+        if (index > -1) {
+          result.refreshToken.splice(index, 1);
+        }
         result.refreshToken.push(refreshToken);
         result.save().then(() => {
           // httpOnly cookie for refreshToken with path '/refresh_token'
           res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
-            path: '/',
+            path: '/api/user',
           });
           // send res
           return res.status(200).json({

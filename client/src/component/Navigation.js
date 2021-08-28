@@ -1,15 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import {useSelector} from 'react-redux';
 import '../css/navigation.css';
 
-export default function Navigation({ isAuth }) {
+export default function Navigation() {
+  const {user, error, loading } = useSelector(state => state.userInfo);
   return (
    
       <div className="navigation">
         <div className="companyName">
           <h3>Flow</h3>
         </div>
-        {isAuth ? (
+        {user&& user.accessToken ? (
           <React.Fragment>
           <div className="searchBar">
           <i className="fas fa-search"></i>
@@ -20,7 +22,7 @@ export default function Navigation({ isAuth }) {
             <p>  <i className="far fa-bell"></i>  </p>
           </div>
           <div className="nameAndMore">
-            <p>Gourav</p>
+            <p>{user.name}</p>
             <p><i className="fas fa-chevron-down"></i> </p>
           </div>
           <div className="userImage">

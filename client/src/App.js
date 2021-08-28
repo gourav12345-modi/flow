@@ -4,31 +4,37 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserInformation } from './actions/userActions';
+import { getAllTask } from './actions/taskActions';
 import React, { useEffect } from 'react';
 import { CLEAR_LOG_DATA } from './constants';
+import ProtectedRoute from './component/ProtectedRoute';
 
 function App() {
+ 
   const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.userInfo);
   useEffect(()=>{
     dispatch(getUserInformation())
-  }, [])
-  const { userInfoLoading  } = useSelector((state) => state.userInfo);
+  }, [dispatch])
+  useEffect(() => {
+    if(userInfo.user && userInfo.user.accessToken)
+     dispatch(getAllTask())
+  },[userInfo])
   return (
     <React.Fragment>
     {
-      userInfoLoading? ("loading.."):
+     userInfo.userInfoLoading? ("loading.."):
        (
         <Router>
         <Switch>
           <Route exact path="/"> <Home /></Route>
-          <Route path="/Dashboard"> <Dashboard /> </Route>
+          <ProtectedRoute path='/dashboard' component={Dashboard} />
           <Route path="/register"> <Signup /></Route>
           <Route path="/login"> <Login /> </Route>
         </Switch>

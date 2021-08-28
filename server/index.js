@@ -16,9 +16,9 @@ const DBURL = 'mongodb://localhost:27017/flow';
 const PORT = process.env.PORT || 1300;
 
 // simulate delay
-app.use((req, res, next) => {
-  setTimeout(() => next(), 3000);
-});
+// app.use((req, res, next) => {
+//   setTimeout(() => next(), 10000);
+// });
 app.use(cookieParser());
 app.use(cors({
   credentials: true,
@@ -32,7 +32,7 @@ app.use('/uploads', express.static('uploads'));
 
 mongoose.connect(DBURL, {
   useCreateIndex: true,
-  useFindAndModify: true,
+  useFindAndModify: false,
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

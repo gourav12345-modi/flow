@@ -1,7 +1,15 @@
 import React from 'react'
+import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../actions/userActions'
 import '../css/sidebar.css'
 
-export default function Sidebar() {
+export default function Sidebar(props) {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logoutUser(history));
+  }
   return (
     <div className="sidebar">
      
@@ -30,7 +38,7 @@ export default function Sidebar() {
         </li>
         <li>
           <p className="icon"><i className="fas fa-sign-out-alt"></i></p>
-          <p className="name">Logout</p>
+          <p className="name" onClick={handleLogout}>Logout</p>
         </li>
       </ul>
     </div>

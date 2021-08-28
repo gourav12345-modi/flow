@@ -39,8 +39,39 @@
 
 .taskBoard .messageContainer{
   width: 100%;
-  background-color: antiquewhite;
+  padding-top: 5px;
+  background-color: rgb(6, 108, 120);
+  color: white;
   margin-bottom: 15px;
+}
+
+.taskBoard .messageContainer .messageTime{
+  font-size: 13px;
+}
+
+.taskBoard .messageContainer .message{
+  font-size: 16px;
+}
+
+.taskBoard .messageContainer .action{
+  display: flex;
+  justify-content: space-between;
+}
+
+.taskBoard .messageContainer .action div {
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  
+  margin-top: 10px;
+  padding: 5px;
+  background-color: rgb(83, 48, 2);
+  display: flex;
+  align-items: center;  
+  justify-content: center;
+}
+
+.taskBoard .messageContainer .action div i {
+  margin-right: 0 ;
 }
 
 .taskBoard .content {
@@ -106,6 +137,55 @@
   -o-border-radius: 15px;
   cursor: pointer;
   font-size: 3rem;
+}
+
+.taskBoard .modal {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 3px 5px black;
+  padding: 5px;
+  background-color: rgb(7 86 125);
+  margin-bottom: 30px;
+}
+
+.taskBoard .modal input {
+  font-size: 16px;
+}
+
+.taskBoard .modal textarea,
+.taskBoard .modal input{
+  padding: 5px;
+  margin: 10px 0;
+  border: 5px solid black;
+
+  border-radius: 5px ;
+  -webkit-border-radius: 5px ;
+  -moz-border-radius: 5px ;
+  -ms-border-radius: 5px ;
+  -o-border-radius: 5px ;
+  outline: none;
+
+}
+
+.taskBoard .modal .actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+}
+.taskBoard .modal .actions button {
+  font-size: 16px;
+    padding: 3px;
+    font-weight: bold;
+    border: 3px solid black;
+}
+
+.taskBoard .modal .actions .add:hover{
+  cursor: pointer;
+  background-color: rgb(38, 164, 38);
+}
+.taskBoard .modal .actions .cancel:hover{
+  cursor: pointer;
+  background-color: rgb(187, 17, 17);
 }
 
 @media screen and (max-width: 1111px) {

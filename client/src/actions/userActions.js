@@ -1,5 +1,5 @@
-import { login, refreshToken, register } from "../api"
-import { GET_USER_INFO_FAIL, GET_USER_INFO_REQUEST, GET_USER_INFO_SUCCESS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_FAIL, REGISTER_REQUEST, REGISTER_SUCCESS } from "../constants";
+import { login, logout, refreshToken, register } from "../api"
+import { GET_USER_INFO_FAIL, GET_USER_INFO_REQUEST, GET_USER_INFO_SUCCESS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_FAIL, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_REQUEST, REGISTER_SUCCESS } from "../constants";
 
 const registerUser = (formData) => async (dispatch) => {
   try{
@@ -31,6 +31,17 @@ const getUserInformation = () => async (dispatch) => {
   }
 }
 
-export { registerUser, loginUser, getUserInformation}
+
+const logoutUser = (history) => async (dispatch) => {
+  try{
+    await logout();
+    dispatch({type: LOGOUT_SUCCESS});
+    history.push('/');
+  } catch(error) {
+    // dispatch({type: LOGOUT_FAIL, payload : error.response.data.message});
+    console.log(error)
+  }
+}
+export { registerUser, loginUser, getUserInformation, logoutUser}
 
 
