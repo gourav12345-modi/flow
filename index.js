@@ -26,11 +26,13 @@ app.use(cors({
   origin: 'http://localhost:3001',
 }));
 app.use(express.json());
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false,
+}));
 
 app.use(morgan('combined'));
 app.use('/uploads', express.static('uploads'));
-app.use(express.static(path.join(__dirname, 'client', 'build')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 mongoose.connect(DBURL, {
   useCreateIndex: true,
@@ -47,17 +49,13 @@ connection.once('open', () => {
   console.log(err);
 });
 
-app.get('/', (req, res) => {
-  res.json({ message: 'ok' });
-});
-
 app.use('/api/task', taskRouter);
 app.use('/api/comment', commentRouter);
 app.use('/api/user', userRouter);
 app.use(errorHandler);
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 app.listen(PORT, () => {
