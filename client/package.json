@@ -1,6 +1,7 @@
 {
   "proxy": "http://localhost:1300/api",
   "name": "flow",
+  "homepage":".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
