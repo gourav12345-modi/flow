@@ -3,6 +3,7 @@ import jwt_decode from "jwt-decode";
 import store from './store';
 import { getUserInformation } from './actions/userActions';
 import { GET_USER_INFO_SUCCESS } from './constants';
+const baseURL = '/api'
 
    const axiosToken = axios.create()
   axiosToken.interceptors.request.use(async (config) => {
@@ -26,19 +27,19 @@ import { GET_USER_INFO_SUCCESS } from './constants';
 
 
 // user 
-export const register = (user) => axios.post(`/user/register`, user);
-export const login = (user) => axios.post(`/user/login`, user);
-export const logout = () => axios.delete(`/user/logout`);
-export const refreshToken = () => axios.post(`/user/refreshToken`);
+export const register = (user) => axios.post(`${baseURL}/user/register`, user);
+export const login = (user) => axios.post(`${baseURL}/user/login`, user);
+export const logout = () => axios.delete(`${baseURL}/user/logout`);
+export const refreshToken = () => axios.post(`${baseURL}/user/refreshToken`);
 
 // task
-export const createNewTask = (data) => axiosToken.post(`/task`, data);
-export const getAllTask = (token) => axiosToken.get(`/task`)
-export const getTaskById = (id) => axiosToken.get(`/task/${id}`);
-export const updateTask = (id, data) => axiosToken.patch(`/task/${id}`,data);
-export const deleteTask = (id) => axiosToken.delete(`/task/${id}`);
+export const createNewTask = (data) => axiosToken.post(`${baseURL}/task`, data);
+export const getAllTask = (token) => axiosToken.get(`${baseURL}/task`)
+export const getTaskById = (id) => axiosToken.get(`${baseURL}/task/${id}`);
+export const updateTask = (id, data) => axiosToken.patch(`${baseURL}/task/${id}`,data);
+export const deleteTask = (id) => axiosToken.delete(`${baseURL}/task/${id}`);
 
 // // comment
-export const createNewComment = (data) => axiosToken.post(`/comment`, data);
-export const updateComment = (id, data) => axiosToken.patch(`/comment/${id}`, data);
-export const deleteComment = (id) => axiosToken.delete(`/comment/${id}`);
+export const createNewComment = (data) => axiosToken.post(`${baseURL}/comment`, data);
+export const updateComment = (id, data) => axiosToken.patch(`${baseURL}/comment/${id}`, data);
+export const deleteComment = (id) => axiosToken.delete(`${baseURL}/comment/${id}`);
