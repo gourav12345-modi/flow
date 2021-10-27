@@ -11,7 +11,6 @@ export default function Login() {
   const dispatch = useDispatch();
   const { error, loading, message } = useSelector((state) => state.userInfo);
   useEffect(() => {
-    console.log("use effect ")
     return () => {
       dispatch({type: CLEAR_LOG_DATA })
     }
@@ -27,7 +26,7 @@ export default function Login() {
     dispatch( loginUser(formData) );
   }
   return (
-    message==='User LoggedIn'?( <Redirect to="/"/> ) : (<div>
+    message==='User LoggedIn'?( <Redirect to="/dashboard"/> ) : (<div>
       <Navigation isAuth={false} />
       <div className="signupFormContainer">
         <h1>Login</h1>

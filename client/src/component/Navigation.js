@@ -13,17 +13,15 @@ export default function Navigation() {
         </div>
         {user&& user.accessToken ? (
           <React.Fragment>
-          <div className="searchBar">
-          <i className="fas fa-search"></i>
-          <input type="text" name="search" id="search" placeholder="Search" className="fontAwesome" />
-          </div>
+          
             <div className="userInfo">
           <div className="notification">
             <p>  <i className="far fa-bell"></i>  </p>
           </div>
           <div className="nameAndMore">
+             <Link to="/dashboard" className="nameLink">
             <p>{user.name}</p>
-            <p><i className="fas fa-chevron-down"></i> </p>
+            </Link>
           </div>
           <div className="userImage">
             <img src="./logo192.png" alt="user" />
