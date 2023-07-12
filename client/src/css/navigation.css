@@ -1,9 +1,11 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Courier New", Courier, monospace;
 }
-body{
+
+body {
   background-color: ffffff;
 }
 
@@ -12,7 +14,7 @@ html {
 }
 
 .fontAwesome {
-  font-family: 'Helvetica', 'Font Awesome 5 Free';
+  font-family: "Helvetica", "Font Awesome 5 Free";
 }
 
 .navigation {
@@ -20,27 +22,29 @@ html {
   padding: 0.5rem 3rem;
   background-color: var(--primary);
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   color: white;
   min-height: 50px;
 }
 
-.navigation .userInfo .login,.navigation .userInfo .register {
-  padding: 5px;
-  background-color: white;
-  font-size: 1.3rem;
-  margin-left: 5px;
-  color: black;
-
+.navigation .userInfo .login,
+.navigation .userInfo .register {
+  font-size: 15px;
+  margin-left: 10px;
 }
 
-.navigation .companyName h3{
-  font-size: 3rem;
+.navigation .companyName h3 {
   display: block;
-  color: white;
 }
 
-.navigation .searchBar .fa-search{
+.navigation .companyName h3 a {
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.navigation .searchBar .fa-search {
   transform: translateX(100%);
   font-size: 2rem;
   padding-left: 0.5rem;
@@ -50,29 +54,31 @@ html {
   -o-transform: translateX(100%);
 }
 
-
-
-.navigation .searchBar input{
+.navigation .searchBar input {
   padding-left: 3rem;
   font-size: 2rem;
   border: none;
-  border-bottom: 2px solid  var(--secondary);
-  color:  var(--secondary);
+  border-bottom: 2px solid var(--secondary);
+  color: var(--secondary);
   outline: none;
   background-color: transparent;
 }
 
-.navigation .searchBar input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.navigation .searchBar input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: var(--secondary);
-  opacity: 0.8; /* Firefox */
+  opacity: 0.8;
+  /* Firefox */
 }
 
-.navigation .searchBar input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+.navigation .searchBar input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
   color: var(--secondary);
   opacity: 0.8;
 }
 
-.navigation .searchBar input::-ms-input-placeholder { /* Microsoft Edge */
+.navigation .searchBar input::-ms-input-placeholder {
+  /* Microsoft Edge */
   color: var(--secondary);
   opacity: 0.8;
 }
@@ -83,36 +89,75 @@ html {
   justify-content: center;
 }
 
+.userInfo .create-btn {
+  padding: 7px 15px;
+}
+
+.userInfo .userImage {
+  margin-left: 10px;
+}
+
+.userInfo .wrapper {
+  position: relative;
+}
+
+.userInfo .menu-bar {
+  background-color: white;
+  color: black;
+  position: absolute;
+  top: 110%;
+  right: 50%;
+  list-style: none;
+  padding: 10px;
+  transform: scale(0);
+  transition: all 0.3s ease;
+  transform-origin: top right;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.userInfo .menu-bar.active {
+  transform: scale(1);
+}
+
+.userInfo .menu-bar li {
+  font-size: 15px;
+  padding: 10px;
+  white-space: nowrap;
+  border-radius: 5px;
+}
+
+.userInfo .menu-bar li:hover {
+  cursor: pointer;
+  background-color: var(--primary);
+  color: white;
+}
+
 .userInfo .notification {
   margin-right: 2rem;
 }
 
-.userInfo .notification p{
+.userInfo .notification p {
   font-size: 2.5rem;
 }
 
-.userInfo .nameAndMore{
+.userInfo .nameAndMore {
   margin-right: 1rem;
   font-size: 1.8rem;
   font-weight: bolder;
 }
 
-.userInfo .nameAndMore p{
+.userInfo .nameAndMore p {
   display: inline-block;
   margin-right: 0.5rem;
 }
 
-.userImage img{
+.userImage img {
   width: 3.5rem;
-  border: 2px solid var(--secondary);
+  cursor: pointer;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
 }
-
-
-
-
-

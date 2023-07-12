@@ -7,13 +7,14 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const path = require('path');
 
+const boardRouter = require('./router/board');
 const taskRouter = require('./router/task');
 const commentRouter = require('./router/comment');
 const userRouter = require('./router/user');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
-const DBURL = process.env.DBURI || 'mongodb://localhost:27017/flow';
+const DBURL = process.env.DBURI || 'mongodb://127.0.0.1:27017/flow';
 const PORT = process.env.PORT || 1300;
 
 // simulate delay
@@ -21,18 +22,22 @@ const PORT = process.env.PORT || 1300;
 //   setTimeout(() => next(), 10000);
 // });
 app.use(cookieParser());
-app.use(cors({
-  credentials: true,
-  origin: 'http://localhost:3001',
-}));
+app.use(
+  cors({
+    credentials: true,
+    origin: 'http://localhost:3001',
+  }),
+);
 app.use(express.json());
-app.use(helmet({
-  contentSecurityPolicy: false,
-}));
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  }),
+);
 
 app.use(morgan('combined'));
-app.use('/uploads', express.static('uploads'));
 app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(`${__dirname}/static/uploads`));
 
 mongoose.connect(DBURL, {
   useCreateIndex: true,
@@ -43,12 +48,16 @@ mongoose.connect(DBURL, {
 
 const { connection } = mongoose;
 
-connection.once('open', () => {
-  console.log('connected to database');
-}).catch((err) => {
-  console.log(err);
-});
+connection
+  .once('open', () => {
+    console.log('connected to database');
+  })
+  .catch((err) => {
+    console.log(err.message);
+    console.log(err);
+  });
 
+app.use('/api/board', boardRouter);
 app.use('/api/task', taskRouter);
 app.use('/api/comment', commentRouter);
 app.use('/api/user', userRouter);

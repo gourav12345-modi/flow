@@ -1,4 +1,4 @@
-.dashboard{
+.dashboard {
   height: 100vh;
   /* background-color: rgb(19, 19, 135); */
   /* overflow: hidden; */
@@ -7,28 +7,24 @@
 }
 
 /* dashboardAndSidebarContainer */
-.dashboardAndSidebarContainer{
+.dashboardAndSidebarContainer {
   display: flex;
   flex: 1;
 }
 
-.taskBoardContainer{
-  /* background-color: rgb(26, 9, 155); */
-  padding-top: 2rem;
-  padding-bottom: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+.taskBoardContainer {
+  background-color: rgba(13, 62, 174, 0.782);
+  padding: 50px;
   display: flex;
   flex: 1;
-  justify-content: space-around;
-  /* flex-wrap: wrap; */
+  overflow-x: auto;
 }
 
 @media screen and (max-width: 1111px) {
-  .dashboardAndSidebarContainer{
+  .dashboardAndSidebarContainer {
     display: block;
   }
-  .taskBoardContainer{
+  .taskBoardContainer {
     flex-direction: column;
     margin: 0;
     padding: 0;

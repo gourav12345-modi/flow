@@ -1,0 +1,13 @@
+.button {
+  color: var(--primary);
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button:active {
+  background-color: rgb(245, 245, 245);
+}

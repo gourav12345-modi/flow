@@ -14,6 +14,8 @@ import { getAllTask } from './actions/taskActions';
 import React, { useEffect } from 'react';
 import { CLEAR_LOG_DATA } from './constants';
 import ProtectedRoute from './component/ProtectedRoute';
+import { getAllBoard } from './actions/boardActions';
+import { getAllComment } from './actions/commentActions';
 
 function App() {
  
@@ -24,7 +26,9 @@ function App() {
   }, [dispatch])
   useEffect(() => {
     if(userInfo.user && userInfo.user.accessToken)
+     dispatch(getAllBoard())
      dispatch(getAllTask())
+     dispatch(getAllComment())
   },[userInfo])
   return (
     <React.Fragment>

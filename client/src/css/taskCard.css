@@ -1,30 +1,28 @@
 .taskCard {
-  background-color:rgb(7, 86, 125);
-
+  background-color: grey;
   color: white;
-  box-shadow: 0px 3px 5px black;
+  box-shadow: 0px 2px 1px black;
   margin-bottom: 15px;
+  border-radius: 10px;
 }
 
-.taskCard .mainContent{
+.taskCard .mainContent {
   padding: 10px;
   word-wrap: break-word;
 }
 
-.taskCard .heading{
+.taskCard .heading {
   display: flex !important;
   align-items: center;
 }
 
-.taskCard .heading .edit{
+.taskCard .heading .edit {
   display: flex;
   align-items: center;
   cursor: pointer;
 }
 
-
-
-.taskCard .bottom{
+.taskCard .bottom {
   margin-top: 15px;
   display: flex;
   justify-content: space-between;
@@ -33,34 +31,36 @@
   font-size: 1.3rem;
 }
 
-.taskCard .bottom .delete{
+.taskCard .bottom .delete {
   cursor: pointer;
-  background-color: rgb(0, 21, 255);
+  background-color: var(--primary);
   height: 100%;
   padding: 5px 15px;
+  border-bottom-right-radius: 10px;
 }
 
-.taskCard .bottom .commentsCount{
+.taskCard .bottom .commentsCount {
   cursor: pointer;
   padding: 5px 15px;
-  background-color: rgb(0, 34, 255);
+  background-color: var(--primary);
+  border-bottom-left-radius: 10px;
 }
 
 .taskCard .heading .name {
   font-size: 2rem;
 }
 
-.taskCard  .time{
+.taskCard .time {
   margin-bottom: 10px;
   font-size: 1.3rem;
 }
 
-.taskCard .description p{
-  font-size: 1.4rem;
+.taskCard .description p {
+  font-size: 15px;
 }
 
 @media screen and (max-width: 1111px) {
-  .taskCard{
+  .taskCard {
     min-width: 300px;
     margin: 5px;
   }

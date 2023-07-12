@@ -1,28 +1,31 @@
-.home{
+.home {
   text-align: center;
   background-color: rgba(13, 62, 174, 0.782);
   height: 100vh;
-  
 }
 
-.home .intro-text{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-100%);
-  -webkit-transform: translate(-50%,-100%);
-  -moz-transform: translate(-50%,-100%);
-  -ms-transform: translate(-50%,-100%);
-  -o-transform: translate(-50%,-100%);
-}
-
-.home h3{
+.home .intro-text h3 {
   font-size: 5rem;
-  font-family: Arial, Helvetica, sans-serif;
   color: white;
 }
 
-.home p{
+.home .intro-text p {
   color: white;
   font-size: 2rem;
+}
+
+.home .intro-text {
+  margin-top: 100px;
+}
+
+.home .cta-button {
+  font-size: 22px;
+  font-weight: bolder;
+  margin-top: 20px;
+  font-style: italic;
+  box-shadow: 0 5px #666;
+}
+
+.home .cta-button:active {
+  box-shadow: 0 0px #666;
 }

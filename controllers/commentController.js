@@ -10,9 +10,21 @@ const createComment = async (req, res, next) => {
   });
   try {
     const savedTask = await comment.save();
-    const updatedTask = await Task
-      .findOneAndUpdate({ _id: taskId }, { $push: { comments: savedTask._id } });
+    await Task.findOneAndUpdate(
+      { _id: taskId },
+      { $push: { comments: savedTask._id } },
+    );
     res.send(savedTask);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get all comments
+const getAllComment = async (req, res, next) => {
+  try {
+    const allComments = await Comment.find({ creator: req.user.id }).sort({ createdAt: -1 });
+    res.send(allComments);
   } catch (error) {
     next(error);
   }
@@ -24,10 +36,12 @@ const updateComment = async (req, res, next) => {
   const { description } = req.body;
   console.log(id, description, req.user.id);
   try {
-    const updatedComment = await Comment
-      .updateOne({ _id: id, creator: req.user.id }, {
+    const updatedComment = await Comment.updateOne(
+      { _id: id, creator: req.user.id },
+      {
         description,
-      });
+      },
+    );
     res.send(updatedComment);
   } catch (error) {
     next(error);
@@ -38,7 +52,10 @@ const updateComment = async (req, res, next) => {
 const deleteComment = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const deletedComment = await Comment.deleteOne({ _id: id, creator: req.user.id });
+    const deletedComment = await Comment.deleteOne({
+      _id: id,
+      creator: req.user.id,
+    });
     res.json({ deleteId: id });
   } catch (error) {
     next(error);
@@ -47,6 +64,7 @@ const deleteComment = async (req, res, next) => {
 
 module.exports = {
   createComment,
+  getAllComment,
   updateComment,
   deleteComment,
 };

@@ -1,61 +1,93 @@
-import { ADD_TASK_FAIL, ADD_TASK_REQUEST, ADD_TASK_SUCCESS, CREATE_COMMENT_SUCCESS, DELETE_COMMENT_FAIL, DELETE_COMMENT_REQUEST, DELETE_COMMENT_SUCCESS, DELETE_TASK_FAIL, DELETE_TASK_REQUEST, DELETE_TASK_SUCCESS, GET_ALL_TASK_FAIL, GET_ALL_TASK_REQUEST, GET_ALL_TASK_SUCCESS, LOGOUT_SUCCESS, UPDATE_COMMENT_SUCCESS, UPDATE_TASK_FAIL, UPDATE_TASK_REQUEST, UPDATE_TASK_SUCCESS } from "../constants";
+import {
+  CREATE_TASK_FAIL,
+  CREATE_TASK_REQUEST,
+  CREATE_TASK_SUCCESS,
+  CREATE_COMMENT_SUCCESS,
+  DELETE_COMMENT_FAIL,
+  DELETE_COMMENT_REQUEST,
+  DELETE_COMMENT_SUCCESS,
+  DELETE_TASK_FAIL,
+  DELETE_TASK_REQUEST,
+  DELETE_TASK_SUCCESS,
+  GET_ALL_TASK_FAIL,
+  GET_ALL_TASK_REQUEST,
+  GET_ALL_TASK_SUCCESS,
+  LOGOUT_SUCCESS,
+  UPDATE_COMMENT_SUCCESS,
+  UPDATE_TASK_FAIL,
+  UPDATE_TASK_REQUEST,
+  UPDATE_TASK_SUCCESS,
+} from "../constants";
 
-const taskReducer = (state = {} ,action) => {
-  switch(action.type) {
+const taskReducer = (state = {}, action) => {
+  let tasksTemp;
+  switch (action.type) {
     case GET_ALL_TASK_REQUEST:
-      return {loading: true}
+      return { loading: true };
     case GET_ALL_TASK_SUCCESS:
-      return {loading: false, tasks: action.payload}
+      return { loading: false, tasks: action.payload };
     case GET_ALL_TASK_FAIL:
-      return {loading: false, error: action.payload}
+      return { loading: false, error: action.payload };
     case UPDATE_TASK_REQUEST:
-      return { ...state, updateTaskLoading: true}
+      return { ...state, updateTaskLoading: true };
     case UPDATE_TASK_SUCCESS:
-      const newTaskList =[]
+      const newTaskList = [];
       state.tasks.map((task) => {
-        if(task._id===action.payload._id) newTaskList.push(action.payload.task);
+        if (task._id === action.payload._id)
+          newTaskList.push(action.payload.task);
         else newTaskList.push(task);
-      })
-      return {...state, tasks: newTaskList, updateTaskLoading: false}
+      });
+      return { ...state, tasks: newTaskList, updateTaskLoading: false };
     case UPDATE_TASK_FAIL:
-      return {...state, updateTaskLoading: false, updateTaskError: action.payload}
-    case ADD_TASK_REQUEST:
-      return {...state, addTasksLoading: true }
-    case ADD_TASK_SUCCESS:
-      return {...state, addTasksLoading: false, tasks: [action.payload, ...(state.tasks)]}
-    case ADD_TASK_FAIL:
-      return {...state, addTaskError: action.payload, addTasksLoading: false}
+      return {
+        ...state,
+        updateTaskLoading: false,
+        updateTaskError: action.payload,
+      };
+    case CREATE_TASK_REQUEST:
+      return { ...state, addTasksLoading: true };
+    case CREATE_TASK_SUCCESS:
+      const tasksPresent = state.tasks || []
+      return {
+        ...state,
+        addTasksLoading: false,
+        tasks: [action.payload.data, ...tasksPresent],
+      };
+    case CREATE_TASK_FAIL:
+      return { ...state, addTaskError: action.payload, addTasksLoading: false };
     case DELETE_TASK_REQUEST:
-      return {...state, deleteTaskLoading: true}
+      return { ...state, deleteTaskLoading: true };
     case DELETE_TASK_SUCCESS:
-      const newTasks = state.tasks.filter((task)=> task._id !== action.payload)
-      return {...state, tasks: newTasks, deleteTaskLoading: false}
+      const newTasks = state.tasks.filter(
+        (task) => task._id !== action.payload
+      );
+      return { ...state, tasks: newTasks, deleteTaskLoading: false };
     case DELETE_TASK_FAIL:
-      return {...state, deleteTaskLoading: false , deleteTaskError: action.payload }
+      return {
+        ...state,
+        deleteTaskLoading: false,
+        deleteTaskError: action.payload,
+      };
     case CREATE_COMMENT_SUCCESS:
-      const index = state.tasks.map(function(task) { return task._id; }).indexOf(action.payload.taskId);
-      if(index !=-1)
-      state.tasks[index].comments = [action.payload.data,...state.tasks[index].comments]
-      return {...state}
-    case UPDATE_COMMENT_SUCCESS:
-      const taskIndex = state.tasks.map(function (task) {return task._id}).indexOf(action.payload.taskId);
-      if(taskIndex!==-1){
-        const commentIndex = state.tasks[taskIndex].comments.map(function(comment) {return comment._id}).indexOf(action.payload.commentId)
-        if(commentIndex!==-1) state.tasks[taskIndex].comments[commentIndex].description = action.payload.description
-      }
-      return {...state}
-    case DELETE_COMMENT_SUCCESS:
-      const indexOfTask = state.tasks.map(function (task) {return task._id}).indexOf(action.payload.taskId);
-      if(indexOfTask!==-1){
-        const commentDeleteIndex = state.tasks[indexOfTask].comments.map(function(comment) {return comment._id}).indexOf(action.payload.commentId);
-        if(commentDeleteIndex>-1) state.tasks[indexOfTask].comments.splice(commentDeleteIndex,1);
-      }
-      return {...state}
-    case LOGOUT_SUCCESS:
-        return {}
-    default: 
-    return state;
-  }
-}
+      tasksTemp = state.tasks.map((task) => {
+        if (action.payload.taskId !== task._id) return task
+        return {...task, comments: [...task.comments, action.payload.data._id]}
+      })
 
-export  default taskReducer
+      console.log("Create comments ", tasksTemp)
+      return { ...state, tasks: tasksTemp };
+    
+    case DELETE_COMMENT_SUCCESS:
+      tasksTemp =  state.tasks.map((task) => {
+        if (action.payload.taskId !== task._id) return task
+        return {...task, comments: task.comments.map((comment) => comment!==action.payload.commentId)}
+      })
+      return { ...state, tasks: tasksTemp };
+    case LOGOUT_SUCCESS:
+      return {};
+    default:
+      return state;
+  }
+};
+
+export default taskReducer;

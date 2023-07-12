@@ -1,45 +1,75 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import {useSelector} from 'react-redux';
-import '../css/navigation.css';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import "../css/navigation.css";
+import Button from "./Button";
+import BoardPopup from "./BoardPopup";
 
 export default function Navigation() {
-  const {user, error, loading } = useSelector(state => state.userInfo);
+  const history = useHistory();
+  const { user } = useSelector((state) => state.userInfo);
+  const [createMenuOpen, setCreateMenuOpen] = useState(false);
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const [showNewBoardPopup, setShowNewBoardPopup] = useState(false);
+
+  const handleNewBoardClick = (e) => {
+    setCreateMenuOpen(false);
+    setShowNewBoardPopup(true);
+  }
+
   return (
-   
+    <React.Fragment>
       <div className="navigation">
         <div className="companyName">
-          <h3>Flow</h3>
+          <h3>
+            <Link to="/">Flow</Link>
+          </h3>
         </div>
-        {user&& user.accessToken ? (
-          <React.Fragment>
-          
-            <div className="userInfo">
-          <div className="notification">
-            <p>  <i className="far fa-bell"></i>  </p>
-          </div>
-          <div className="nameAndMore">
-             <Link to="/dashboard" className="nameLink">
-            <p>{user.name}</p>
-            </Link>
-          </div>
-          <div className="userImage">
-            <img src="./logo192.png" alt="user" />
-          </div>
-        </div>
-        </React.Fragment>
-        ):(
+        {user && user.accessToken ? (
           <React.Fragment>
             <div className="userInfo">
-          <Link to="/login" className="login">Login</Link>
-          <Link to="/register" className="register">Register</Link>
-          </div>
+              <div class="wrapper">
+                <Button className="create-btn" onClick={() => setCreateMenuOpen((createMenuOpen) => !createMenuOpen)}>
+                  <i class="fa fa-plus"></i>
+                </Button>
+                <ul className={"menu-bar create-menu-bar " + (createMenuOpen ? "active" : "")}>
+                  <li>New Task</li>
+                  <li onClick={handleNewBoardClick}>New Board</li>
+                </ul>
+              </div>
+              <div className="wrapper">
+                <div className="userImage" onClick={() => setProfileMenuOpen((profileMenuOpen) => !profileMenuOpen)}>
+                  <img
+                    src={`http://${window.location.hostname}:1300/${user.profilePhoto}`}
+                    alt="user"
+                  />
+                </div>
+                <ul className={"menu-bar profile-menu-bar " + (profileMenuOpen ? "active" : "")}>
+                  <li>Profile</li>
+                  <li>Change Password</li>
+                  <li>Logout</li>
+                </ul>
+              </div>
+            </div>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <div className="userInfo">
+              <Button onClick={() => history.push("/login")} className="login">
+                Login
+              </Button>
+              <Button
+                onClick={() => history.push("/register")}
+                className="register"
+              >
+                Register
+              </Button>
+            </div>
           </React.Fragment>
         )}
-        
-
-      
       </div>
-   
-  )
+     <BoardPopup showNewBoardPopup={showNewBoardPopup} setShowNewBoardPopup={setShowNewBoardPopup}/>
+    </React.Fragment>
+  );
 }

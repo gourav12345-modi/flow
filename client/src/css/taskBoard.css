@@ -1,7 +1,6 @@
-.taskBoard{
-  background-color: rgb(40, 35, 201);
+.taskBoard {
+  background-color: rgba(13, 62, 174, 0.782);
   flex: 1 1 300px;
-  max-width: 400px;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
   height: 100%;
@@ -14,18 +13,62 @@
   padding-right: 20px;
   padding-top: 10px;
   overflow: auto;
-  border-bottom: 2px solid rgb(15, 189, 128);
+  min-width: 400px;
+  max-width: 400px;
 }
 
-.taskBoard .heading{
+.taskBoard .heading {
   display: flex;
   justify-content: space-between;
   font-size: 1.6rem;
   color: white;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.taskBoard .heading .left {
+  display: flex;
+  margin-right: 10px;
+  position: relative;
+  align-items: center;
+}
+
+.taskBoard .heading .left i {
+  cursor: pointer;
+}
+
+.taskBoard .heading .left .triple-dot-menu {
+  list-style-type: none;
+  background-color: white;
+  color: black;
+  position: absolute;
+  top: 0%;
+  right: 12px;
+  transform: scale(0);
+  transition: all 0.3s ease;
+  transform-origin: top right;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.taskBoard .heading .left .triple-dot-menu.clicked {
+  transform: scale(1);
+}
+
+.taskBoard .heading .left .triple-dot-menu li {
+  white-space: nowrap;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.taskBoard .heading .left .triple-dot-menu li:hover {
+  background-color: var(--primary);
+  cursor: pointer;
+  color: white;
 }
 
 .taskBoard .comments {
-  max-height:20px ;
+  max-height: 20px;
 }
 
 .taskBoard .comments .heading {
@@ -37,23 +80,30 @@
   margin-right: 10px;
 }
 
-.taskBoard .messageContainer{
+.taskBoard .messageContainer {
   width: 100%;
-  padding-top: 5px;
-  background-color: rgb(6, 108, 120);
+  padding-bottom: 0px;
+  background-color: gray;
   color: white;
   margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 1px black;
+  font-size: 15px;
 }
 
-.taskBoard .messageContainer .messageTime{
+.taskBoard .messageContainer .message-content {
+  padding: 5px;
+}
+
+.taskBoard .messageContainer .messageTime {
   font-size: 13px;
 }
 
-.taskBoard .messageContainer .message{
+.taskBoard .messageContainer .message {
   font-size: 16px;
 }
 
-.taskBoard .messageContainer .action{
+.taskBoard .messageContainer .action {
   display: flex;
   justify-content: space-between;
 }
@@ -61,17 +111,33 @@
 .taskBoard .messageContainer .action div {
   color: rgb(255, 255, 255);
   font-size: 15px;
-  
+
   margin-top: 10px;
   padding: 5px;
-  background-color: rgb(83, 48, 2);
   display: flex;
-  align-items: center;  
+  align-items: center;
   justify-content: center;
+
 }
 
+.taskBoard .messageContainer .action div.edit {
+  cursor: pointer;
+  padding: 5px 15px;
+  background-color: var(--primary);
+  border-bottom-left-radius: 10px;
+}
+
+.taskBoard .messageContainer .action div.delete {
+  cursor: pointer;
+  padding: 5px 15px;
+  background-color: var(--primary);
+  border-bottom-right-radius: 10px;
+}
+
+
+
 .taskBoard .messageContainer .action div i {
-  margin-right: 0 ;
+  margin-right: 0;
 }
 
 .taskBoard .content {
@@ -80,54 +146,56 @@
 }
 
 .taskBoard .content::-webkit-scrollbar {
-  width: 0px;  /* Remove scrollbar space */
-  background: transparent;  /* Optional: just make scrollbar invisible */
+  width: 0px;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
 }
 
 .taskBoard .content::-webkit-scrollbar-thumb {
-  background:transparent;
+  background: transparent;
 }
 
 .taskBoard .comments::-webkit-scrollbar {
-  width: 0px;  /* Remove scrollbar space */
-  background: transparent;  /* Optional: just make scrollbar invisible */
+  width: 0px;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
 }
 
 .taskBoard .comments::-webkit-scrollbar-thumb {
-  background:transparent;
+  background: transparent;
 }
 
 .taskBoard::-webkit-scrollbar {
-  width: 0px;  /* Remove scrollbar space */
-  background: transparent;  /* Optional: just make scrollbar invisible */
+  width: 0px;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
 }
 
 .taskBoard::-webkit-scrollbar-thumb {
-  background:transparent;
+  background: transparent;
 }
 
 .taskBoard .heading .count {
   background-color: rgb(14, 19, 118);
-  /*border: 2px solid black;
-  *//*height: 20px;
-  */padding: 4px;
+  padding: 5px 9px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
+  border-radius: 5px;
+  border: 0.5px solid white;
+  margin-right: 10px;
 }
 
-.taskBoard .addMore{
+.taskBoard .addMore {
   margin-bottom: 15px;
   box-shadow: 0px 2px 5px rgb(0, 0, 0);
   color: white;
   width: 100%;
   margin-top: 15px;
-  background-color: rgb(12, 72, 145);
+  background-color: var(--primary);
   border: none;
   padding: 2px;
   border-radius: 15px;
@@ -137,15 +205,24 @@
   -o-border-radius: 15px;
   cursor: pointer;
   font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taskBoard .addMore span {
+  font-size: 20px;
+  margin-left: 5px;
 }
 
 .taskBoard .modal {
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 3px 5px black;
-  padding: 5px;
+  box-shadow: 0px 2px 1px black;
+  padding: 15px;
   background-color: rgb(7 86 125);
   margin-bottom: 30px;
+  border-radius: 10px;
 }
 
 .taskBoard .modal input {
@@ -153,18 +230,20 @@
 }
 
 .taskBoard .modal textarea,
-.taskBoard .modal input{
+.taskBoard .modal input {
   padding: 5px;
   margin: 10px 0;
-  border: 5px solid black;
-
-  border-radius: 5px ;
-  -webkit-border-radius: 5px ;
-  -moz-border-radius: 5px ;
-  -ms-border-radius: 5px ;
-  -o-border-radius: 5px ;
+  border: 2px solid black;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
   outline: none;
+}
 
+.taskBoard .modal textarea {
+  font-size: 15px;
 }
 
 .taskBoard .modal .actions {
@@ -172,24 +251,26 @@
   justify-content: space-around;
   padding: 5px;
 }
+
 .taskBoard .modal .actions button {
-  font-size: 16px;
-    padding: 3px;
-    font-weight: bold;
-    border: 3px solid black;
+  padding: 5px 10px;
+  font-size: 15px;
 }
 
-.taskBoard .modal .actions .add:hover{
+.taskBoard .modal .actions .add:hover {
   cursor: pointer;
   background-color: rgb(38, 164, 38);
+  color: white;
 }
-.taskBoard .modal .actions .cancel:hover{
+
+.taskBoard .modal .actions .cancel:hover {
   cursor: pointer;
   background-color: rgb(187, 17, 17);
+  color: white;
 }
 
 @media screen and (max-width: 1111px) {
-  .taskBoard{
+  .taskBoard {
     max-width: unset;
     width: 100%;
     margin: 0;
@@ -200,19 +281,20 @@
     -o-border-radius: unset;
   }
 
-  .taskBoard .content{
+  .taskBoard .content {
     display: flex;
     overflow: auto;
     height: unset;
   }
 
-  .taskBoard .addMore{
+  .taskBoard .addMore {
     width: 4rem;
-    
   }
+
   .taskBoard .content::-webkit-scrollbar {
-    width: 0px;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+    width: 0px;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
   }
-  
 }
