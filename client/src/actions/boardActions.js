@@ -29,7 +29,9 @@ const createBoard = (board, setLoading, setShowNewBoardPopup) => async (dispatch
     dispatch({ type: CREATE_BOARD_REQUEST });
     try {
         const { data } = await api.createNewBoard(board);
+        if (setLoading)
         setLoading(false)
+        if(setShowNewBoardPopup)
         setShowNewBoardPopup(false)
         dispatch({ type: CREATE_BOARD_SUCCESS, payload: data });
     } catch (err) {

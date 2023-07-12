@@ -22,12 +22,13 @@ const getAllTask = () => async (dispatch) => {
   }
 };
 
-const addTask = (task) => async (dispatch) => {
+const addTask = (task, setShowPopup) => async (dispatch) => {
   dispatch({ type: CREATE_TASK_REQUEST });
   const {boardId} = task
   try {
     const { data } = await api.createNewTask(task);
     dispatch({ type: CREATE_TASK_SUCCESS, payload: {data, boardId }});
+    if (setShowPopup) setShowPopup(false)
   } catch (err) {
     console.log(err);
   }

@@ -73,7 +73,6 @@ const boardReducer = (state = {}, action) => {
         deleteBoardError: action.payload,
       };
     case CREATE_TASK_SUCCESS:
-      console.log(action.payload, "this is payload")
       newBoardList = state.boards.map((board) => {
         if (board._id === action.payload.boardId) return { ...board, tasks: [action.payload.data._id, ...board.tasks] }
         return board

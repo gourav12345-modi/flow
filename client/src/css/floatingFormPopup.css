@@ -1,4 +1,4 @@
-.new-board-form-bg-wrapper {
+.floating-form-bg {
     position: absolute;
     top: 0;
     background-color: rgba(107, 107, 107, 0.445);
@@ -9,11 +9,11 @@
     transition: all 0.3s ease;
 }
 
-.new-board-form-bg-wrapper.active {
+.floating-form-bg.active {
     transform: scale(1);
 }
 
-.new_board_popup {
+.floating-form {
     position: absolute;
     top: 20%;
     left: 50%;
@@ -26,32 +26,33 @@
     z-index: 2;
 }
 
-.new_board_popup #board_name_input {
-    font-size: 20px;
+.floating-form input,
+.floating-form textarea {
+    font-size: 18px;
     border: 2px solid black;
     border-radius: 5px;
     padding: 5px;
     margin-top: 10px;
 }
 
-.new_board_popup .actions {
+.floating-form .actions {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 10px;
 }
 
-.new_board_popup button {
+.floating-form button {
     margin: 10px;
     color: white;
     padding: 8px 10px;
     font-size: 15px;
 }
 
-.new_board_popup button.cancel {
+.floating-form button.cancel {
     background-color: red;
 }
 
-.new_board_popup button.create {
+.floating-form button.create {
     background-color: var(--primary);
 }

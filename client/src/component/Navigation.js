@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "../css/navigation.css";
 import Button from "./Button";
-import BoardPopup from "./BoardPopup";
+import FloatingBoardPopup from "./FloatingBoardPopup";
+import FloatingTaskPopup from "./FloatingTaskPopup";
 
 export default function Navigation() {
   const history = useHistory();
@@ -12,10 +13,15 @@ export default function Navigation() {
   const [createMenuOpen, setCreateMenuOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [showNewBoardPopup, setShowNewBoardPopup] = useState(false);
+  const [showNewTaskPopup, setShowNewTaskPopup] = useState(false);
 
   const handleNewBoardClick = (e) => {
     setCreateMenuOpen(false);
     setShowNewBoardPopup(true);
+  }
+  const handleNewTaskClick = (e) => {
+    setCreateMenuOpen(false);
+    setShowNewTaskPopup(true);
   }
 
   return (
@@ -34,7 +40,7 @@ export default function Navigation() {
                   <i class="fa fa-plus"></i>
                 </Button>
                 <ul className={"menu-bar create-menu-bar " + (createMenuOpen ? "active" : "")}>
-                  <li>New Task</li>
+                  <li onClick={handleNewTaskClick}>New Task</li>
                   <li onClick={handleNewBoardClick}>New Board</li>
                 </ul>
               </div>
@@ -69,7 +75,8 @@ export default function Navigation() {
           </React.Fragment>
         )}
       </div>
-     <BoardPopup showNewBoardPopup={showNewBoardPopup} setShowNewBoardPopup={setShowNewBoardPopup}/>
+     <FloatingBoardPopup showPopup={showNewBoardPopup} setShowPopup={setShowNewBoardPopup}/>
+     <FloatingTaskPopup showPopup={showNewTaskPopup} setShowPopup={setShowNewTaskPopup} />
     </React.Fragment>
   );
 }
