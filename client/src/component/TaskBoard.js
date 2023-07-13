@@ -142,15 +142,19 @@ function TaskBoard({ _id, title, tasks }) {
                 </div>
               </div>
             )}
-            {tasks.map((task) => {
-              return (
-                <TaskCard
-                  task={task}
-                  key={task._id}
-                  setCurrentTask={setCurrentTask}
-                />
-              );
-            })}
+            {tasks.length || openModal? (
+              tasks.map((task) => {
+                return (
+                  <TaskCard
+                    task={task}
+                    key={task._id}
+                    setCurrentTask={setCurrentTask}
+                  />
+                );
+              })
+            ): (
+              <p className="no-task-text">Create a task <br/>By clicking on <i className="fa fa-ellipsis-v triple-dot"></i></p>
+            )}
           </div>
         </div>
       )}

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../css/dashboard.css";
 import Navigation from "../component/Navigation";
-import Sidebar from "../component/Sidebar";
 import TaskBoard from "../component/TaskBoard";
 import { useSelector } from "react-redux";
 
@@ -32,19 +31,26 @@ export default function Dashbord() {
   return (
     <div className="dashboard">
       <Navigation isAuth={true} />
-      <div className="dashboardAndSidebarContainer">
-        {/* <Sidebar /> */}
-        <div className="taskBoardContainer">
-          {/* <TaskBoard tasks={todo} type={0} />
-          <TaskBoard tasks={inProgress} type={1} />
-          <TaskBoard tasks={done} type={2} /> */}
-          {
-            allBoardsData.map((board) => (
-              <TaskBoard {...board} />
-            ))
-          }
-        </div>
-      </div>
+
+      {
+        allBoardsData.length ? (
+          <div className="taskBoardContainer">
+
+            {
+              allBoardsData.map((board) => (
+                <TaskBoard {...board} />
+              ))
+            }
+          </div>
+
+        ) : (
+          <React.Fragment>
+            <img src="/images/no_boards.svg" className="no-board-image" />
+          <p className="no-board-text">You don't have any board. <br/>Please create one by clicking on + icon present in top right corner</p>
+          </React.Fragment>
+        )
+      }
+
     </div>
   );
 }

@@ -17,6 +17,13 @@
   max-width: 400px;
 }
 
+.taskBoard .no-task-text {
+  margin-top: 50px;
+  color: rgb(224, 219, 219);
+  font-size: 20px;
+  text-align: center;
+}
+
 .taskBoard .heading {
   display: flex;
   justify-content: space-between;
