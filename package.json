@@ -7,7 +7,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js --ignore ./client/",
     "lint": "eslint \"**/*.{js,jsx}\"",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+    "buildScript": "npm i && cd client && npm i && npm run build"
   },
   "keywords": [],
   "author": "",
