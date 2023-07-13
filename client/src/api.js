@@ -34,6 +34,7 @@ export const register = (user) => axios.post(`${baseURL}/user/register`, user);
 export const login = (user) => axios.post(`${baseURL}/user/login`, user);
 export const logout = () => axios.delete(`${baseURL}/user/logout`);
 export const refreshToken = () => axios.post(`${baseURL}/user/refreshToken`);
+export const changePassword = (data) => axiosToken.patch(`${baseURL}/user/changePassword`, data)
 
 // board 
 export const createNewBoard = (data) => axiosToken.post(`${baseURL}/board`, data);

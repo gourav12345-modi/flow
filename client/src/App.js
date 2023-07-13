@@ -16,6 +16,7 @@ import { CLEAR_LOG_DATA } from './constants';
 import ProtectedRoute from './component/ProtectedRoute';
 import { getAllBoard } from './actions/boardActions';
 import { getAllComment } from './actions/commentActions';
+import Profile from './pages/Profile';
 
 function App() {
  
@@ -39,6 +40,7 @@ function App() {
         <Switch>
           <Route exact path="/"> <Home /></Route>
           <ProtectedRoute path='/dashboard' component={Dashboard} />
+          <ProtectedRoute path='/account' component={Profile} />
           <Route path="/register"> <Signup /></Route>
           <Route path="/login"> <Login /> </Route>
         </Switch>

@@ -4,7 +4,9 @@
 
   --secondary: white;
   --tertiary: #f5f9fa;
+  --lightBlue: rgba(13, 62, 174, 0.782);
 }
+
 
 body {
   margin: 0;

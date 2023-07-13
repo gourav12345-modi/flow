@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "../css/navigation.css";
 import Button from "./Button";
 import FloatingBoardPopup from "./FloatingBoardPopup";
 import FloatingTaskPopup from "./FloatingTaskPopup";
+import { logoutUser } from "../actions/userActions";
 
 export default function Navigation() {
   const history = useHistory();
@@ -14,6 +15,7 @@ export default function Navigation() {
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [showNewBoardPopup, setShowNewBoardPopup] = useState(false);
   const [showNewTaskPopup, setShowNewTaskPopup] = useState(false);
+  const dispatch = useDispatch();
 
   const handleNewBoardClick = (e) => {
     setCreateMenuOpen(false);
@@ -23,6 +25,10 @@ export default function Navigation() {
     setCreateMenuOpen(false);
     setShowNewTaskPopup(true);
   }
+
+  const handleLogout = () => {
+    dispatch(logoutUser(history));
+  };
 
   return (
     <React.Fragment>
@@ -52,9 +58,8 @@ export default function Navigation() {
                   />
                 </div>
                 <ul className={"menu-bar profile-menu-bar " + (profileMenuOpen ? "active" : "")}>
-                  <li>Profile</li>
-                  <li>Change Password</li>
-                  <li>Logout</li>
+                  <li onClick={() => history.push("/account")}>Account</li>
+                  <li onClick={handleLogout}>Logout</li>
                 </ul>
               </div>
             </div>

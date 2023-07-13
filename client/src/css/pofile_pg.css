@@ -1,0 +1,131 @@
+.profile-pg {
+    background-color: var(--lightBlue);
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.profile-pg .pg-content {
+    box-sizing: border-box;
+    max-width: 670px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    background-color: var(--primary);
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 50px;
+
+}
+
+.profile-pg h2 {
+    font-size: 30px;
+    margin-bottom: 30px;
+    color: var(--secondary);
+}
+
+.profile-pg .profile-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.profile-pg .about-user {
+    margin-top: 25px;
+}
+
+.profile-pg .profile-content .user-image {
+    width: 200px;
+    border-radius: 50%;
+    margin-right: 100px;
+
+}
+
+.profile-pg .profile-content .user-name {
+    font-size: 30px;
+    color: var(--secondary);
+}
+
+.profile-pg .profile-content .user-email {
+    font-size: 25px;
+    color: var(--secondary);
+}
+
+.profile-pg .change-password-section {
+    margin-top: 80px;
+}
+
+.profile-pg form div {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    max-width: 300px;
+  }
+
+.profile-pg form div i {
+    font-size: 17px;
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    padding-bottom: 5px;
+    color:var(--secondary);
+  }
+
+.profile-pg form input {
+    padding-left: 25px;
+    outline: none;
+    padding-bottom: 2px;
+    width: 100%;
+    font-size: 17px;
+    background-color: transparent;
+    color: white;
+    border: 0;
+    border-bottom: 2px solid white;
+}
+
+.profile-pg form input:-webkit-autofill,
+.profile-pg form input:-webkit-autofill:hover,
+.profile-pg form input:-webkit-autofill:focus,
+.profile-pg form input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #17266e inset !important;
+}
+
+.profile-pg form input:-webkit-autofill {
+    -webkit-text-fill-color: white !important;
+}
+
+.profile-pg form input::-webkit-input-placeholder {
+    /* Edge */
+    color: rgb(206, 206, 206);
+}
+
+.profile-pg form input:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: rgb(206, 206, 206);
+}
+
+.profile-pg form input::placeholder {
+    color: rgb(206, 206, 206);
+}
+
+.profile-pg .error {
+    margin-left: 15px;
+    color: var(--secondary);
+}
+
+.profile-pg .change-password-btn {
+    padding: 7px 12px;
+    margin-left: 15px;
+    margin-top: 15px;
+    background-color: var(--lightBlue);
+    color: var(--secondary);
+}
+
+.profile-pg .change-password-btn:hover {
+    background-color: var(--secondary);
+    color: var(--primary);
+}
