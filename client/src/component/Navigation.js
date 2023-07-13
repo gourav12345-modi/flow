@@ -53,7 +53,7 @@ export default function Navigation() {
               <div className="wrapper">
                 <div className="userImage" onClick={() => setProfileMenuOpen((profileMenuOpen) => !profileMenuOpen)}>
                   <img
-                    src={`http://${window.location.hostname}:1300/${user.profilePhoto}`}
+                    src={user.profilePhoto}
                     alt="user"
                   />
                 </div>

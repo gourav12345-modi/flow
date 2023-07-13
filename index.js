@@ -15,7 +15,7 @@ const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 const DBURL = process.env.DBURI || 'mongodb://127.0.0.1:27017/flow';
-const PORT = process.env.PORT || 1300;
+const PORT = process.env.PORT || 8000;
 
 // simulate delay
 // app.use((req, res, next) => {

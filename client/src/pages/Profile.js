@@ -65,7 +65,7 @@ function Profile() {
                 <div className="profile-section">
                     <h2>Profile</h2>
                     <div className='profile-content'>
-                        <img src={`http://${window.location.hostname}:1300/${user.profilePhoto}`} className='user-image' />
+                        <img src={user.profilePhoto} className='user-image' />
                         <div className='about-user'>
                             <h3 className='user-name'>{user.name}</h3>
                             <h3 className='user-email'>{user.email}</h3>

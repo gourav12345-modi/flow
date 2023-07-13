@@ -9,6 +9,8 @@ const isValidPassword = (password) => password.trim();
 
 // Register user
 const register = (req, res, next) => {
+  const backendBaseUrl = `${req.protocol}://${req.get('host')}`;
+
   // Getting data
   const { name, email, password } = req.body;
 
@@ -40,11 +42,13 @@ const register = (req, res, next) => {
 
           // hash password
           const hashedPassword = await bcrypt.hash(password, 10);
+
+          const profilePhotoPath = `${backendBaseUrl}/${photoName}`;
           const newUser = new User({
             name,
             email,
             password: hashedPassword,
-            profilePhoto: photoName,
+            profilePhoto: profilePhotoPath,
           });
 
           // save newUser
