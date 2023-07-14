@@ -24,7 +24,7 @@ function App() {
   const userInfo = useSelector((state) => state.userInfo);
   useEffect(()=>{
     dispatch(getUserInformation())
-  }, [dispatch])
+  }, [])
   useEffect(() => {
     if(userInfo.user && userInfo.user.accessToken)
      dispatch(getAllBoard())

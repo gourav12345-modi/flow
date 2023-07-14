@@ -4,7 +4,7 @@ import { createBoard } from '../actions/boardActions';
 import Button from './Button';
 import "../css/floatingFormPopup.css"
 
-function FloatingFormPopup({ showPopup, setShowPopup, className, children, createHandler }) {
+function FloatingFormPopup({ showPopup, setShowPopup, className, children, createHandler, createDisabled = false }) {
   const [newBoardName, setNewBoardName] = useState("");
   const [Loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ function FloatingFormPopup({ showPopup, setShowPopup, className, children, creat
             e.preventDefault();
             setShowPopup(false)
           }}>Cancel</Button>
-          <Button className="create" onClick={createHandler}>Create</Button>
+          <Button className="create" onClick={createHandler} disabled={createDisabled}>Create</Button>
         </div>
       </form>
     </div>

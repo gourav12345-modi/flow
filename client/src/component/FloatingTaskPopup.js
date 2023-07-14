@@ -8,6 +8,7 @@ import { addTask } from '../actions/taskActions';
 
 
 function FloatingTaskPopup({ showPopup, setShowPopup }) {
+    const [createDisabled, setCreateDisabled] = useState(false)
     const [formData, setFormData] = useState({
         title: "",
         board: "",
@@ -17,11 +18,11 @@ function FloatingTaskPopup({ showPopup, setShowPopup }) {
     const [boardOptions, setBoardOptions] = useState([])
     const [loadingCreateBoard, setLoadingCreateBoard] = useState(false);
     const dispatch = useDispatch();
-    const boards = useSelector((state) => state.boards.boards) || []
+    const boards = useSelector((state) => state.boards.boards)
 
     const handleCreateTask = (e) => {
         e.preventDefault();
-        console.log(formData)
+        if (!formData.board.value) return
         const requestData = {
             ...formData,
             boardId: formData.board.value
@@ -38,26 +39,35 @@ function FloatingTaskPopup({ showPopup, setShowPopup }) {
     }
 
     useEffect(() => {
+        if (formData.title && formData.board && formData.board.value && formData.description) setCreateDisabled(false)
+        else setCreateDisabled(true)
+
+    }, [formData])
+
+    useEffect(() => {
         const boardOptions = []
-        boards.forEach(board => {
+        let selectedBoard = null;
+
+        boards?.forEach(board => {
             if (createdBoardName === board.title) {
-                setFormData((formData) => ({ ...formData, board: { value: board._id, label: board.title } }))
+                selectedBoard = { value: board._id, label: board.title };
             }
             boardOptions.push({ value: board._id, label: board.title })
         });
 
 
         setBoardOptions(boardOptions)
-    }, [boards, createdBoardName])
+        setFormData((formData) => ({ ...formData, board: selectedBoard }));
+    }, [createdBoardName, boards])
 
-    const styles={
+    const styles = {
         control: (baseStyles, state) => ({
-          ...baseStyles,
-          fontSize: '18px',
-          border: state.isFocused ?'2px solid black': '2px solid black',
-          borderRadius: '5px',
-          marginTop: '10px',
-          outline: 'unset'
+            ...baseStyles,
+            fontSize: '18px',
+            border: state.isFocused ? '2px solid black' : '2px solid black',
+            borderRadius: '5px',
+            marginTop: '10px',
+            outline: 'unset'
         }),
         option: (baseStyles, state) => ({
             ...baseStyles,
@@ -67,7 +77,7 @@ function FloatingTaskPopup({ showPopup, setShowPopup }) {
 
 
     return (
-        <FloatingFormPopup showPopup={showPopup} setShowPopup={setShowPopup} createHandler={handleCreateTask}>
+        <FloatingFormPopup showPopup={showPopup} setShowPopup={setShowPopup} createHandler={handleCreateTask} createDisabled={createDisabled}>
             <CreatableSelect styles={styles} isClearable placeholder="Select Board" options={boardOptions} value={formData.board} onChange={(option) => setFormData({ ...formData, board: option })} onCreateOption={handleNewBoardCreate} isLoading={loadingCreateBoard} isDisabled={loadingCreateBoard} />
             <input
                 type="text"
