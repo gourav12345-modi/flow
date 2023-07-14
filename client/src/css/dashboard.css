@@ -32,13 +32,8 @@
   overflow-x: auto;
 }
 
-@media screen and (max-width: 1111px) {
-  .dashboardAndSidebarContainer {
-    display: block;
-  }
+@media screen and (max-width: 530px) {
   .taskBoardContainer {
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
+    padding: 50px 20px;
   }
 }

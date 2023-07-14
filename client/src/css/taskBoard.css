@@ -275,32 +275,9 @@
   color: white;
 }
 
-@media screen and (max-width: 1111px) {
+@media screen and (max-width: 530px) {
   .taskBoard {
-    max-width: unset;
-    width: 100%;
-    margin: 0;
-    border-radius: unset;
-    -webkit-border-radius: unset;
-    -moz-border-radius: unset;
-    -ms-border-radius: unset;
-    -o-border-radius: unset;
-  }
-
-  .taskBoard .content {
-    display: flex;
-    overflow: auto;
-    height: unset;
-  }
-
-  .taskBoard .addMore {
-    width: 4rem;
-  }
-
-  .taskBoard .content::-webkit-scrollbar {
-    width: 0px;
-    /* Remove scrollbar space */
-    background: transparent;
-    /* Optional: just make scrollbar invisible */
+    min-width: 300px;
+    max-width: 350px;
   }
 }

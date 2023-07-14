@@ -59,9 +59,9 @@
   font-size: 15px;
 }
 
-@media screen and (max-width: 1111px) {
+/* @media screen and (max-width: 1111px) {
   .taskCard {
     min-width: 300px;
     margin: 5px;
   }
-}
+} */

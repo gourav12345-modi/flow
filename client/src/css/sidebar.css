@@ -52,7 +52,7 @@
   color: black;
 }
 
-@media screen and (max-width: 1111px) {
+/* @media screen and (max-width: 1111px) {
   .sidebar {
     position: fixed;
     bottom: 0;
@@ -78,4 +78,4 @@
   .sidebar .primary li:hover {
     border-left: 5px solid rgba(8, 99, 99, 0.714);
   }
-}
+} */
